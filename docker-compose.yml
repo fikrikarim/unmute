@@ -60,11 +60,12 @@ services:
       dockerfile: public.Dockerfile
     environment:
       - HUGGING_FACE_HUB_TOKEN=$HUGGING_FACE_HUB_TOKEN
+      - HF_HOME=/models
     volumes:
       - ./volumes/cargo-registry-tts:/root/.cargo/registry
       - ./volumes/tts-target:/app/target
       - ./volumes/uv-cache:/root/.cache/uv
-      - /tmp/models/:/models
+      - ./volumes/models:/models
       - ./volumes/tts-logs:/logs
     deploy:
       resources:
@@ -82,11 +83,12 @@ services:
       dockerfile: public.Dockerfile
     environment:
       - HUGGING_FACE_HUB_TOKEN=$HUGGING_FACE_HUB_TOKEN
+      - HF_HOME=/models
     volumes:
       - ./volumes/cargo-registry-stt:/root/.cargo/registry
       - ./volumes/stt-target:/app/target
       - ./volumes/uv-cache:/root/.cache/uv
-      - /tmp/models/:/models
+      - ./volumes/models:/models
       - ./volumes/stt-logs:/logs
     deploy:
       resources:
@@ -112,10 +114,11 @@ services:
         "--gpu-memory-utilization=0.4",
       ]
     volumes:
-      - ./volumes/huggingface-cache:/root/.cache/huggingface
+      - ./volumes/models:/models
       - ./volumes/vllm-cache:/root/.cache/vllm
     environment:
       - HUGGING_FACE_HUB_TOKEN=$HUGGING_FACE_HUB_TOKEN
+      - HF_HOME=/models
     deploy:
       resources:
         reservations:
