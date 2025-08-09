@@ -112,7 +112,7 @@ services:
         "--gpu-memory-utilization=0.4",
       ]
     volumes:
-      - ./volumes/huggingface-cache:/root/.cache/huggingface"
+      - ./volumes/huggingface-cache:/root/.cache/huggingface
       - ./volumes/vllm-cache:/root/.cache/vllm
     environment:
       - HUGGING_FACE_HUB_TOKEN=$HUGGING_FACE_HUB_TOKEN
