@@ -103,15 +103,17 @@ services:
     command:
       [
         # NOTE: Change the LLM here if you want.
-        # (caution: gemma-3-1b-it also exists but it's slow on vLLM: https://github.com/vllm-project/vllm/issues/19575)
-        "--model=google/gemma-3-4b-it",
+      # (caution: gemma-3-1b-it also exists but it's slow on vLLM: https://github.com/vllm-project/vllm/issues/19575)
+      # "--model=google/gemma-3-4b-it",
+        "--model=Qwen/Qwen3-4B-Instruct-2507",
+        "--max-model-len=8192",
         # NOTE: You can adapt this based on your GPU memory.
-        # A higher value takes more memory but supports longer conversations.
-        # "--max-model-len=1536",
-        "--dtype=bfloat16",
-        # NOTE: Change this based on your GPU memory.
-        # A higher value can make inference faster.
-        "--gpu-memory-utilization=0.4",
+      # A higher value takes more memory but supports longer conversations.
+      # "--max-model-len=8192",
+      # "--dtype=bfloat16",
+      # NOTE: Change this based on your GPU memory.
+      # A higher value can make inference faster.
+        "--gpu-memory-utilization=0.6"
       ]
     volumes:
       - ./volumes/models:/models
